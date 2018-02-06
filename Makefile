@@ -29,6 +29,7 @@ BUILD_ARGS = \
 	--build-arg "DEB_COMPONENTS=${DEB_COMPONENTS}" \
 	--build-arg "DEB_DIST=${DEB_DIST}" \
 	--build-arg "DEB_MIRROR_URL=${DEB_MIRROR_URL}" \
+	--build-arg "DEB_PACKAGES=${DEB_PACKAGES}" \
 	--build-arg "DEB_SECURITY_MIRROR_URL=${DEB_SECURITY_MIRROR_URL}" \
 	--build-arg "DOCKER_USER=${DOCKER_USER}" \
 	--build-arg "DOCKER_USER_UID=${DOCKER_USER_UID}" \
