@@ -1,0 +1,23 @@
+env:
+  global:
+    - secure: QiaHGyhV1P2SmkHoqaO0uxrlrrBgDCJu0Sl/L+aSvHvZdyoWjSIshfClrvCDij+7GP0SjOu6mC7DDdEDZZ4mZ4RPqWIptJTwpN1OVaqrWqXdePcbYR+PqCxTkiTRzVr4/wvyyB04QYDNJpIuEHcgJvb9g/eu4gx0CUb7Gf2OGviPIu2Rxl2+rcmZRqvLkFJf+se22JglGR3hmrvqW1f3jkfPdTOuoiwBdFZ42/ZQp2ri1ocgiPaYyXLStkkA4GKQjz6oegkofskFtNgY/ppixZVqlXJaFqWCp3Rb2YGljVKD3SL/UouU2t7jvTC9vaIHBvQQDn0L5TfAiIapqW+FC6fXygBm23dOxvd/zGn6lRir5XpXjNfdk/PJijEhKTEUs6gMfVUrqdHXJ6QBMnjsch2MMLTpZ87gwB8HQC+Rrg4s6cImcR1ZNrAEmoDG681MdgQNcR/5v8Lwld3XCUfz+iRxzwG0uPnbDPGX9zpmqC/ABbBF3T+GYnT7hMde+ZaWlbF1HOG7YfQFtE5GcAXrlq9ZRqDyEReiEpmgUQ4jbzfU5EihWK4wNrY8M8ul/cJhf93njfgtHVUPae8UMhLl69eafNhCBa9rqcZ/ILVuyu6a4dWdBKNcHJj/YFVlhiPvcv6V2w3ZTlUJTJXJlv+BOipBcJFo6WTZ1Q1mVcsJvxQ=
+    - DOCKER_USERNAME=vallar
+    - DOCKER_USER=admin
+addons:
+  apt:
+    packages:
+      - docker-ce
+      - make
+      - openssh-client
+      - sshpass
+language: generic
+sudo: required
+services:
+  - docker
+before_install:
+  - docker --version
+  - make showenv
+script:
+  - make test
+after_success:
+  - if [ "$TRAVIS_BRANCH" == 'master' ]; then make login; make push; fi
