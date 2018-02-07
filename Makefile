@@ -117,3 +117,12 @@ pull: ## Run 'docker pull' with image
 
 push: ## Run 'docker push' with image
 	docker push $(DOCKER_BUILD_TAG)
+
+test: run ## Test unsecure SSH
+	sshpass -p $(DOCKER_USER) ssh \
+		-o PasswordAuthentication=yes \
+		-o StrictHostKeyChecking=no \
+		-o User=$(DOCKER_USER) \
+		-o UserKnownHostsFile=/dev/null \
+		-p $$(sudo netstat -tunelp |awk '/docker-proxy/ { print $$4; }' |tr -d ':') \
+		localhost /bin/true
