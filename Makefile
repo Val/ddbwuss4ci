@@ -108,7 +108,8 @@ login: ## Login to Docker hub
 		echo '$$DOCKER_USERNAME **and** $$DOCKER_PASSWORD must be set'; \
 		exit 2; \
 	else \
-		docker login -u="$$DOCKER_USERNAME" -p="$$DOCKER_PASSWORD"; \
+		echo "$$DOCKER_PASSWORD" |\
+			docker login -u="$$DOCKER_USERNAME" --password-stdin; \
 	fi
 
 pull: ## Run 'docker pull' with image
