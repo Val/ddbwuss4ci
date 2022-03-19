@@ -125,5 +125,6 @@ test: run ## Test unsecure SSH
 		-o StrictHostKeyChecking=no \
 		-o User=$(DOCKER_USER) \
 		-o UserKnownHostsFile=/dev/null \
-		-p $$(sudo netstat -tunelp |awk '/docker-proxy/ { print $$4; }' |tr -d ':') \
+		-p $$(sudo netstat -tunelp |awk '/docker-proxy/ { print $$4; }' \
+			| cut -f2 -d:) \
 		localhost /bin/true
