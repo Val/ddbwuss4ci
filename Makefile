@@ -4,14 +4,14 @@
 # Makefile:
 #   Debian Docker Base With Unsecure SSH Server for Continuous Integration
 #
-# (c) 2018 Laurent Vallar <val@zbla.net>, MIT license see LICENSE file.
+# (c) 2018-2022 Laurent Vallar <val@zbla.net>, MIT license see LICENSE file.
 
 SHELL = /bin/bash
 UNAME = $(shell uname)
 
 REPO_DIR = $(shell basename ${PWD})
 
-DEB_DIST ?= stretch
+DEB_DIST ?= bullseye
 DEB_MIRROR_URL ?= http://deb.debian.org/debian
 DEB_SECURITY_MIRROR_URL ?= http://security.debian.org
 DEB_COMPONENTS ?= main

@@ -3,11 +3,11 @@
 # Dockerfile:
 #   Debian Docker Base With Unsecure SSH Server for Continuous Integration
 #
-# (c) 2018 Laurent Vallar <val@zbla.net>, MIT license see LICENSE file.
+# (c) 2018-2022 Laurent Vallar <val@zbla.net>, MIT license see LICENSE file.
 
-ARG DEB_DIST=stretch
+ARG DEB_DIST=bullseye
 FROM "debian:${DEB_DIST}-slim"
-ARG DEB_DIST=stretch
+ARG DEB_DIST=bullseye
 
 LABEL Description="Debian Docker Base With Unsecure SSH Server for Continuous \
 Integration"
@@ -36,7 +36,7 @@ ENV TERM linux
 # Initialize minimal sources.list, update all & install OpenSSH server
 RUN echo "deb $DEB_MIRROR_URL $DEB_DIST $DEB_COMPONENTS" \
       > /etc/apt/sources.list && \
-    echo "deb $DEB_SECURITY_MIRROR_URL $DEB_DIST/updates $DEB_COMPONENTS" \
+    echo "deb $DEB_SECURITY_MIRROR_URL ${DEB_DIST}-security $DEB_COMPONENTS" \
       >> /etc/apt/sources.list && \
     apt-get update && \
     apt-get -y upgrade && \
